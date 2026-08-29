@@ -11,13 +11,14 @@ Senior-style Go interview exercises. Implement them yourself; use the notes as a
   - Store by ID, FIFO `ready`, `Reserve` / `Complete` / `Fail`
   - Retry until `maxRetries`, then dead-letter queue
   - OpenAI-style job-lifecycle question
+- [x] **Rate limiter (token bucket)** (`ratelimiter/`)
+  - Lazy refill, burst cap, `Allow` / `Wait(ctx)`
 
 ## Up next
 
 Pick one; same pattern as before (types → one method → tests).
 
 - [ ] **Worker pool** — N workers on the work queue; cap in-flight jobs; cancel via `context`
-- [ ] **Rate limiter (token bucket)** — `Allow()` / `Wait(ctx)`, refill over time, burst cap
 
 ## Backlog
 
@@ -43,4 +44,7 @@ cd finiteconcurrentwebcrawler && go test -race -count=1 ./... && go run ./cmd/cr
 
 # work queue
 cd work_queue && go run .
+
+# rate limiter
+cd ratelimiter && go test -race -count=1 . && go run ./cmd/ratelimiter
 ```
