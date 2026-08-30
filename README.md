@@ -13,16 +13,17 @@ Senior-style Go interview exercises. Implement them yourself; use the notes as a
   - OpenAI-style job-lifecycle question
 - [x] **Rate limiter (token bucket)** (`ratelimiter/`)
   - Lazy refill, burst cap, `Allow` / `Wait(ctx)`
+- [x] **Worker pool** (`workerpool/`)
+  - N workers, `Queue` interface, cancel via `context`
 
 ## Up next
 
 Pick one; same pattern as before (types → one method → tests).
 
-- [ ] **Worker pool** — N workers on the work queue; cap in-flight jobs; cancel via `context`
+- [ ] **LRU cache with TTL** — `Get` / `Set`, max size, expiry, mutex, `go test -race`
 
 ## Backlog
 
-- [ ] **LRU cache with TTL** — `Get` / `Set`, max size, expiry, mutex, `go test -race`
 - [ ] **`singleflight`** — coalesced in-flight fetches; same key = one call, many waiters
 - [ ] **Delayed job queue** — `runAt` min-heap + existing FIFO ready queue
 - [ ] **In-memory KV with transactions** — `Get` / `Set` / `Begin` / `Commit` / `Rollback`
@@ -47,4 +48,7 @@ cd work_queue && go run .
 
 # rate limiter
 cd ratelimiter && go test -race -count=1 . && go run ./cmd/ratelimiter
+
+# worker pool
+cd workerpool && go test -race -count=1 .
 ```
