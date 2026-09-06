@@ -15,16 +15,19 @@ Senior-style Go interview exercises. Implement them yourself; use the notes as a
   - Lazy refill, burst cap, `Allow` / `Wait(ctx)`
 - [x] **Worker pool** (`workerpool/`)
   - N workers, `Queue` interface, cancel via `context`
+- [x] **LRU cache with TTL** (`LRUCache/`)
+  - O(1) `Get` / `Set` with map plus doubly linked list
+  - Maximum size, least-recently-used eviction, and TTL expiry
+  - Mutex-protected and verified with `go test -race`
 
 ## Up next
 
 Pick one; same pattern as before (types → one method → tests).
 
-- [ ] **LRU cache with TTL** — `Get` / `Set`, max size, expiry, mutex, `go test -race`
+- [ ] **`singleflight`** — coalesced in-flight fetches; same key = one call, many waiters
 
 ## Backlog
 
-- [ ] **`singleflight`** — coalesced in-flight fetches; same key = one call, many waiters
 - [ ] **Delayed job queue** — `runAt` min-heap + existing FIFO ready queue
 - [ ] **In-memory KV with transactions** — `Get` / `Set` / `Begin` / `Commit` / `Rollback`
 - [ ] **Pub/sub** — `Subscribe` / `Publish`; bounded buffers so slow subs don’t block forever
@@ -51,4 +54,7 @@ cd ratelimiter && go test -race -count=1 . && go run ./cmd/ratelimiter
 
 # worker pool
 cd workerpool && go test -race -count=1 .
+
+# LRU cache
+cd LRUCache && go test -race -count=1 .
 ```
